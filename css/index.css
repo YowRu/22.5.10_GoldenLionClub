@@ -262,9 +262,9 @@
     height: 312px;
   }
 
-  #main .row {
+  /* #main .row {
     margin-bottom: 5px;
-  }
+  } */
 
   #main .row .text a.yellow {
     background-color: rgba(0, 0, 0, 0.809);
