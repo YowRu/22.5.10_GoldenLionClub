@@ -74,8 +74,7 @@ fieldset {
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    /* margin: 0 auto; */
-    margin: 60px auto 0;
+    margin: 0 auto;
     min-height: 100vh;
 }
 
@@ -254,9 +253,9 @@ input#validate {
         margin-top: 75px;
     }
 
-    #main {
+    /* #main {
         padding: 80px 30px 0;
-    }
+    } */
 }
 
 @media(max-width:700px) {
@@ -273,9 +272,9 @@ input#validate {
         margin-top: 55px;
     }
 
-    #main {
+    /* #main {
         padding-top: 65px;
-    }
+    } */
 }
 
 @media(max-width:650px) {
@@ -297,9 +296,10 @@ input#validate {
         width: 24px;
     }
 
+    /* 
     #main {
         padding-top: 54px;
-    }
+    } */
 
     label, input, input::placeholder {
         font-size: .95rem;
@@ -362,9 +362,9 @@ input#validate {
         margin: 26px auto 38px;
     }
 
-    #main {
+    /* #main {
         padding: 54px 15px 0;
-    }
+    } */
 
     input#authCode {
         width: 200px;
