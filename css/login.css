@@ -18,7 +18,7 @@ header .bottom a {
 }
 
 .content .title {
-  padding: 18px 0 0;
+  padding: 18px 0;
   background-color: #eee;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -34,6 +34,7 @@ form {
 fieldset .flex {
   border: 1px solid #eee;
   height: 46px;
+  margin: 20px auto;
 }
 
 fieldset .flex.last {
