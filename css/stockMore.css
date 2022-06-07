@@ -1,0 +1,90 @@
+.moreSection {
+  display: flex;
+  justify-content: center;
+  max-width: 1300px;
+  width: 100%;
+  margin: 60px auto 0;
+}
+
+.moreSection .tabs {
+  width: 20%;
+}
+
+.moreSection .tab_container {
+  width: 50%;
+  margin-left: 10%;
+}
+
+.moreSection .tabs a.back {
+  display: block;
+  font-size: .9rem;
+  color: #0033b6;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #000;
+  margin-bottom: 20px;
+}
+
+.moreSection .tabs .underline {
+  text-decoration: underline;
+}
+
+.moreSection .tabs li a {
+  color: #000;
+  line-height: 2rem;
+  font-size: .9rem;
+}
+
+.moreSection .tabs .active a {
+  border-left: 2px solid #000;
+  padding-left: 2px;
+}
+
+.moreSection .tab_container .title {
+  font-size: 2rem;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.moreSection .tab_container p {
+  margin-bottom: 20px;
+}
+
+.moreSection .tab_container p.blod {
+  font-weight: 600;
+}
+
+.moreSection #tab1 img {
+  width: 70%;
+  display: block;
+  margin: 40px auto;
+}
+
+.moreSection #tab2 img {
+  width: 50%;
+  display: block;
+  margin: 40px auto;
+}
+
+.moreSection #tab3 img {
+  width: 50%;
+  display: block;
+  margin: 40px auto 60px;
+}
+
+@media(max-width:550px) {
+  .moreSection {
+    flex-direction: column;
+  }
+
+  .moreSection .tabs {
+    width: 80%;
+    margin: 0 auto 30px;
+    background-color: #efefef;
+    padding: 20px;
+  }
+
+  .moreSection .tab_container {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

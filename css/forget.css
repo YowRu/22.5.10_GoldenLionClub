@@ -1,0 +1,39 @@
+#main {
+  height: 500px;
+  margin: 0 auto;
+}
+
+#main p.big {
+  font-size: 20px;
+  width: max-content;
+  color: rgb(108, 108, 108);
+}
+
+.flex.noLine {
+  display: block;
+  height: 50px;
+  margin: 52px auto 76px;
+  background-color: #0287ec;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+label.error {
+  left: 13%;
+}
+
+#Form span {
+  color: #0287ec;
+  font-size: .8rem;
+}
+
+@media(max-width:550px) {
+  #Form span {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    font-size: .8rem;
+    padding-top: 10px;
+  }
+}

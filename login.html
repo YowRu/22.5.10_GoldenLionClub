@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/loading.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/signUpInfo.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/validate.css" type="text/css">
+        <title>富盈金投 -登入</title>
+      </head>
+<body>
+    <header></header>
+    <div id="main">
+       <div class="content">
+            <div class="title">登入會員中心</div>
+            <form action="" id="Form" method="post">
+              <fieldset>
+                <div class="flex">
+                    <img src="img/icon/phone.png" alt="">
+                    <input type="tel" id="id" name="id" placeholder="請輸入註冊手機" autocomplete="on" required>
+                </div>
+                <div class="flex">
+                    <img src="img/icon/pwd.png" alt="">
+                    <input type="password"  id="pwd" name="pwd" placeholder="請輸入登錄密碼" autocomplete="off"required>
+                </div>
+                <div class="flex forget">
+                    <a href="signUP.html" class="left">立即開戶</a>
+                    <a href="forget.html">忘記密碼?</a>
+                </div>
+                <input type="submit" value="安全登錄" class="submit">
+              </fieldset>
+            </form>
+       </div>
+    </div>
+    <script>
+        
+        var re = new RegExp("^09\\d{8}$");
+        var text = new RegExp("^[\u4E00-\u9FA5]+$");
+        var num =new RegExp("/^[0-9a-zA-Z]+$/");
+        //id
+        jQuery.validator.methods.matches = function (value, element, params) {
+            var re = new RegExp(params);
+            return this.optional(element) || re.test(value);
+        };
+        //Chinese
+        jQuery.validator.methods.matches = function (value, element, params) {
+            var text = new RegExp(params);
+            return this.optional(element) || text.test(value);
+        };
+        //number & english
+        jQuery.validator.methods.matches = function (value, element, params) {
+            var num = new RegExp(params);
+            return this.optional(element) || num.test(value);
+        };
+
+        $( "#Form" ).validate({
+            rules: {
+                id: {
+                    required: true,
+                    matches: re,
+                },
+                pwd: {
+                    required: true,
+                    minlength:6
+                },
+            },
+            messages: {
+                id: {
+                    required: "請輸入註冊手機",
+                    matches: "請輸入註冊手機",
+                    maxlength:10
+                },
+                pwd: {
+                    required: "請填寫密碼",
+                    minlength:"至少輸入6位密碼"
+                },
+            },
+            submitHandler: function (form) {
+                  var users = { 
+                    id: $("#id").val(),
+                    pwd: $("#pwd").val() 
+                  };
+                  let userId= $("#id").val();
+                  $.ajax({
+                      type: 'POST',
+                      contentType: "application/json",
+                      url: '/api/Login',
+                      data: JSON.stringify(users),
+                      success: function (msg) {
+                          if(msg==='登入成功'){
+                            document.cookie = 'login=success';
+                            document.cookie = 'id='+ userId;
+                            
+                            Swal.fire({
+                                icon: 'success',
+                                title: '您好!',
+                                text: '歡迎登入',
+                            }).then((result) => {
+                                $('header a.login').hide();
+                                $('header a.logout').show();
+                                setTimeout(function() {
+                                    window.location="index.html"
+                                }, 500);  
+                            });
+
+                        }else{
+                            Swal.fire({
+                                icon: 'question',
+                                title: '帳號或密碼錯誤',
+                                text:'忘記密碼?',
+                            }).then((result) => {
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 500);  
+                            });
+                                                  }
+                      }
+                  });
+            }
+        });
+    
+    </script>
+</body>
+</html>

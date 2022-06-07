@@ -1,0 +1,87 @@
+<div class="WP">
+    <div class="left">
+        <nav>
+            <span></span>
+            <span></span>
+            <span></span>
+        </nav>
+        <a href="index.html" class="logo"><h1>logo</h1></a>
+    </div>
+    <div class="right">
+        <a href="ETF.html">ETF</a>
+        <a href="stock.html">股票</a>
+        <a href="encryption.html">加密</a>
+        <a href="Forex.html">外汇</a>
+    </div>
+    <div class="btn">
+        <a href="" class="login content">客服咨询</a>
+        <a href="login.html" class="login">登入</a>
+        <a href="signUp.html" class="login">註冊</a>
+    </div>
+    <div class="menu">
+        <div class="close">＋</div>
+        <img src="img/logo.png" alt="">
+        <div class="black">
+            <a href="signUP.html">立即开户</a>
+        </div>
+        <a href="ETF.html" class="top">ETF</a>
+        <a href="stock.html">股票</a>
+        <a href="encryption.html">加密</a>
+        <a href="Forex.html">外汇</a>
+        <a href="" class="content">客服咨询</a>
+    </div>
+</div>
+<div class="bg"></div>
+<script>
+$(document).ready(function(){
+    let $H=$(window).height();
+    let $W=$(window).width();
+    
+    let h=$('header .row1 .menu').height();
+    if($H-40 < h){
+       $('header .row1 .menu').css({'overflow-y':'scroll'});
+    }
+
+    //resize   
+   $(window).resize(function(){
+        let $H=$(window).height();
+        let $W=$(window).width();
+        $('header .menu').animate({
+            'marginLeft': 0
+        }, 0);
+        $('header .left').css({'display':'block'});
+        $('header .bg').hide();
+        $('body').css('overflow', 'auto');
+        $('#main').removeClass('sliderDown').removeClass('menuOpen');
+        
+        if(600>$H){
+            $('header .menu a').css({'line-height':'55px'});
+        }
+   });
+
+    /*menu*/
+    $('header nav').click(function () {
+        $('header .menu').show().animate({
+            'marginLeft': 320,
+        }, 500);
+        $('header .bg').show();
+        $('body').css('overflow', 'hidden');
+    });
+    $('header .menu .close').click(function () {
+        $('header .menu').animate({
+            'marginLeft': 0
+        }, 500);
+        $('header .left').css({'display':'block'});
+        $('header .bg').hide();
+        $('body').css('overflow', 'auto');
+    });
+
+    $('header .menu a').click(function(){
+        $('header .menu').slideUp();
+        $('header .bg').hide();
+        $("body").removeClass('menuOpen');
+        $('header').removeClass('open');
+    });
+
+});
+</script>

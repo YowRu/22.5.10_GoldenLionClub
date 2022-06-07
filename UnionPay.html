@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/loading.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/signUpInfo.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/validate.css" type="text/css">
+        <title>金狮会 -银联帐户</title>
+      </head>
+      <style>
+        #main{margin-top: 70px;}
+        label#id-error {left: 41%;}
+    </style>
+<body>
+    <header></header>
+    <div id="main">
+       <div class="content no">
+            <div class="title">银联帐户</div>
+            <div class="flex stepWP">
+                <div class="step step1 active">
+                    <div class="num">1</div>
+                    <p>帐户号码</p>
+                </div>
+                <div class="step step2">
+                    <div class="num">2</div>
+                    <p>收款帐户资讯</p>
+                </div>
+                <div class="step step3">
+                    <div class="num">3</div>
+                    <p>上传资料</p>
+                </div>
+                <!-- <div class="step step4">
+                    <div class="num">4</div>
+                    <p>开户成功</p>
+                </div> -->
+            </div>
+            <form action="" id="Form" method="post">
+              <fieldset>
+                <div class="content">
+                    <div class="flex">
+                        <img src="img/icon/id.png" alt="">
+                        <input type="text" id="name" name="name" placeholder="请输入winner户名" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <img src="img/icon/country.png" alt="">
+                        <input type="text" id="country" name="country" placeholder="请输入国籍" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>护照号码 :</span> -->
+                        <img src="img/icon/passport.png" alt="">
+                        <input type="text" id="passport" name="passport" placeholder="请输入护照号码" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>联络地址 :</span> -->
+                        <img src="img/icon/place.png" alt="">
+                        <input type="text" id="address" name="address" placeholder="请输入联络地址" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>会员推荐码 :</span> -->
+                        <img src="img/icon/exchange.png" alt="">
+                        <input type="text" id="referralCode" name="referralCode" placeholder="请输入会员推荐码" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>登入密码 :</span> -->
+                        <img src="img/icon/padlock.png" alt="">
+                        <input type="password" id="password" name="password" placeholder="请输入登入密码" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>交易密码 :</span> -->
+                        <img src="img/icon/password.png" alt="">
+                        <input type="password" id="tradPassword" name="tradPassword" placeholder="请输入交易密码" autocomplete="off" required>
+                    </div>
+                    <div class="flex last">
+                        <!-- <span>确认交易密码 :</span> -->
+                        <img src="img/icon/passwordCheck.png" alt="">
+                        <input type="password" id="confirmPWD" name="confirmPWD" placeholder="请确认交易密码" autocomplete="off" required>
+                    </div>
+                    <input type="submit" value="下一步" class="submit no">
+                </div>
+              </fieldset>
+            </form>
+       </div>
+    </div>
+    <script>
+        var re = new RegExp("^09\\d{8}$");
+
+        jQuery.validator.methods.matches = function (value, element, params) {
+            var re = new RegExp(params);
+            return this.optional(element) || re.test(value);
+        };
+
+        $( "#Form" ).validate({
+            rules: {
+                name: {
+                    required: true,
+                },
+                country:{
+                    required: true,
+                },
+                passport:{
+                    required: true,
+                },
+                address:{
+                    required: true,
+                },
+                referralCode:{
+                    required: true,
+                },
+                password:{
+                    required: true,
+                },
+                tradPassword: {
+                    required: true,
+                },
+                confirmPWD:{
+                    required: true,
+                    equalTo: "#tradPassword"
+                }
+            },
+            messages: {
+                name: {
+                    required: "请输入姓名",
+                },
+                country: {
+                    required: "请输入国籍",
+                },
+                passport:{
+                    required: "请输入护照号码",
+                },
+                address:{
+                    required: "请输入联络地址",
+                },
+                referralCode:{
+                    required: "请输入会员推荐码",
+                },
+                password:{
+                    required: "请输入登入密码",
+                },
+                tradPassword:{
+                    required: "请输入交易密码",
+                },
+                confirmPWD:{
+                    required: "请再次输入交易密码",
+                    equalTo: "请输入相同交易密码"
+                }
+            },
+            
+        });
+    
+    </script>
+   
+</body>
+</html>

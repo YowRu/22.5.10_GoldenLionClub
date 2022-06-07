@@ -1,0 +1,14 @@
+.moreSection #tab4 img, .moreSection #tab5 img,
+.moreSection #tab6 img, .moreSection #tab7 img {
+  width: 80%;
+  display: block;
+  margin: 40px auto 60px;
+}
+
+@media (max-width:550px) {
+
+  .moreSection #tab4 img, .moreSection #tab5 img,
+  .moreSection #tab6 img, .moreSection #tab7 img {
+    width: 90%;
+  }
+}

@@ -1,0 +1,67 @@
+header .left a {
+  background: url(../img/logo_W.png) no-repeat center;
+  background-size: contain;
+}
+
+header.scroll {
+  background-color: transparent;
+}
+
+header .bottom a {
+  color: #fff;
+}
+
+.content {
+  background-color: #fff;
+  border-radius: 10px;
+  padding-bottom: 30px;
+}
+
+.content .title {
+  padding: 26px 0;
+  background-color: #eee;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+form {
+  width: 80%;
+  margin: 0 auto;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+fieldset .flex {
+  border: 1px solid #eee;
+  height: 46px;
+}
+
+fieldset .flex.last {
+  margin-bottom: 50px;
+}
+
+fieldset .flex.forget {
+  border: 0;
+  justify-content: space-between;
+}
+
+#main .flex img {
+  width: 19px;
+  margin-left: 20px;
+}
+
+@media(max-width:700px) {
+  input, .confirm {
+    width: 80%;
+  }
+}
+
+@media(max-width:450px) {
+  input, .confirm {
+    width: 70%;
+  }
+
+  label {
+    width: 20%;
+  }
+}

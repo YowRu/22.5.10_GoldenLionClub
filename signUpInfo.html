@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/loading.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/news.css" type="text/css">
+        <link rel="stylesheet" href="css/signUp.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/validate.css" type="text/css">
+        <title>金狮会 -開立帳戶</title>
+      </head>
+      <style>
+        #main{margin-top: 70px;}
+        label#id-error {left: 41%;}
+    </style>
+<body>
+    <header></header>
+    <div id="main">
+       <div class="content no">
+            <div class="title">開立帳戶</div>
+            <div class="flex stepWP">
+                <div class="step step1 active">
+                    <div class="num">1</div>
+                    <p>驗證手機</p>
+                </div>
+                <div class="step step2">
+                    <div class="num">2</div>
+                    <p>實名認證</p>
+                </div>
+                <div class="step step3">
+                    <div class="num">3</div>
+                    <p>設置密碼</p>
+                </div>
+                <div class="step step4">
+                    <div class="num">4</div>
+                    <p>開戶成功</p>
+                </div>
+            </div>
+            <form action="" id="Form" method="post">
+              <fieldset>
+                <div class="content">
+                    <div class="flex">
+                        <img src="img/icon/phone.png" alt="">
+                        <span>886</span>
+                        <input type="tel" id="id" name="id" placeholder="請輸入手機號碼" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <img src="img/icon/validation.png" alt="">
+                        <input type="text" placeholder="驗證碼" id="validate" name="validate"required>
+                        <a class="confirm">獲取驗證碼</a>
+                    </div>
+                    <div class="flex noBorder">
+                        <div class="left">
+                            <input type="checkbox" id="checkbox" name="checkbox" required>
+                             <span>我已閱讀並同意</span>
+                        </div>
+                        <a href="" target="_blank">《富盈金投用戶使用協議》</a>
+                    </div>
+                    <input type="submit" value="下一步" class="submit no">
+                    <div class="flex noBorder blue">
+                        <p>已有帳號,</p>
+                        <a href="login.html">立即登入</a>
+                    </div>
+                </div>
+              </fieldset>
+            </form>
+       </div>
+    </div>
+    <script>
+        $('.confirm').click(function(){
+            if($('#id').val()!==''){
+                let id = $('#id').val();
+                $.ajax({
+                    type: 'POST',
+                    contentType: "application/json",
+                    url: '/api/Login',
+                    data: JSON.stringify(id),
+                    success: function (msg) {}
+                });
+            }else{
+                $(this).attr('disabled','disabled');
+                Swal.fire({
+                        icon: 'warning',
+                        title: '尚未輸入手機',
+                        text: '請輸入手機號碼',
+                    });
+            }
+        });
+        var re = new RegExp("^09\\d{8}$");
+
+        jQuery.validator.methods.matches = function (value, element, params) {
+            var re = new RegExp(params);
+            return this.optional(element) || re.test(value);
+        };
+
+        $( "#Form" ).validate({
+            rules: {
+                id: {
+                    required: true,
+                    matches: re,
+                },
+                validate: {
+                    required: true,
+                },
+                checkbox:{
+                    required: true,
+                }
+            },
+            messages: {
+                id: {
+                    required: "請輸入註冊手機",
+                    matches: "手機格式錯誤",
+                    maxlength:10
+                },
+                validate: {
+                    required: "點選獲取驗證碼",
+                },
+                checkbox:{
+                    required: '請勾選同意協議',
+                }
+            },
+            submitHandler: function (form) {
+              var users = { 
+                validate: $("#validate").val()
+              };
+              
+              $.ajax({
+                  type: 'POST',
+                  contentType: "application/json",
+                  url: '/api/Login',
+                  data: JSON.stringify(users),
+                  success: function (msg) {
+                      if(msg==='驗證成功'){
+                        
+                        Swal.fire({
+                            icon: 'success',
+                            title: '驗證成功',
+                            text: '前往實名認證',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                window.location="name.html"
+                            }, 500);  
+                        });
+
+                    }else{
+                        Swal.fire({
+                            icon: 'question',
+                            title: '輸入錯誤',
+                            text:'驗證碼錯誤',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 500);  
+                        });
+                                              }
+                  }
+              });
+            }
+        });
+    
+    </script>
+   
+</body>
+</html>

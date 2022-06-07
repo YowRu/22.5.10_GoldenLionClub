@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/loading.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/signUpInfo.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/validate.css" type="text/css">
+        <link rel="stylesheet" href="css/cashPlus.css">
+        <title>金狮会 -环球帐户</title>
+      </head>
+<body>
+    <header></header>
+    <div id="main">
+       <div class="content no">
+            <div class="title">环球帐户</div>
+            <div class="flex stepWP">
+                <div class="step step1 active">
+                    <div class="num">1</div>
+                    <p>资本资料</p>
+                </div>
+                <div class="step step2">
+                    <div class="num">2</div>
+                    <p>收款帐户资讯</p>
+                </div>
+                <div class="step step3">
+                    <div class="num">3</div>
+                    <p>电子钱包帐户资讯</p>
+                </div>
+            </div>
+            <form action="" id="Form" method="post">
+              <fieldset>
+                <div class="content">
+                    <div class="flex">
+                        <img src="img/icon/id.png" alt="">
+                        <input type="text" id="name" name="name" placeholder="请输入姓名" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <img src="img/icon/phone.png" alt="">
+                        <input type="tel" id="tel" name="tel" placeholder="请输入电话" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>微信 :</span> -->
+                        <img src="img/icon/wechat.png" alt="">
+                        <input type="text" id="WeChat" name="WeChat" placeholder="请输入微信号" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>会员推荐码 :</span> -->
+                        <img src="img/icon/exchange.png" alt="">
+                        <input type="text" id="referralCode" name="referralCode" placeholder="请输入会员推荐码" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>登入密码 :</span> -->
+                        <img src="img/icon/padlock.png" alt="">
+                        <input type="password" id="password" name="password" placeholder="请输入登入密码" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>交易密码 :</span> -->
+                        <img src="img/icon/password.png" alt="">
+                        <input type="password" id="tradPassword" name="tradPassword" placeholder="请输入交易密码" autocomplete="off" required>
+                    </div>
+                    <div class="flex last">
+                        <!-- <span>确认交易密码 :</span> -->
+                        <img src="img/icon/passwordCheck.png" alt="">
+                        <input type="password" id="confirmPWD" name="confirmPWD" placeholder="请确认交易密码" autocomplete="off" required>
+                    </div>
+                    <input type="submit" value="下一步" class="submit no">
+                </div>
+              </fieldset>
+            </form>
+       </div>
+    </div>
+    <script>
+
+        var re = new RegExp("^09\\d{8}$");
+
+        jQuery.validator.methods.matches = function (value, element, params) {
+            var re = new RegExp(params);
+            return this.optional(element) || re.test(value);
+        };
+
+        $( "#Form" ).validate({
+            rules: {
+                name: {
+                    required: true,
+                },
+                tel:{
+                    required: true,
+                    matches: re,
+                },
+                WeChat:{
+                    required: true,
+                },
+                referralCode:{
+                    required: true,
+                },
+                password:{
+                    required: true,
+                },
+                tradPassword: {
+                    required: true,
+                },
+                confirmPWD:{
+                    required: true,
+                    equalTo: "#tradPassword"
+                }
+            },
+            messages: {
+                name: {
+                    required: "请输入姓名",
+                },
+                tel: {
+                    required: "请输入註冊手機",
+                    matches: "手機格式錯誤",
+                    maxlength:10
+                },
+                WeChat:{
+                    required: "请输入微信号",
+                },
+                referralCode:{
+                    required: "请输入会员推荐码",
+                },
+                password:{
+                    required: "请输入登入密码",
+                },
+                tradPassword:{
+                    required: "请输入交易密码",
+                },
+                confirmPWD:{
+                    required: "请再次输入交易密码",
+                    equalTo: "请输入相同交易密码"
+                }
+            },
+            
+        });
+    
+    </script>
+   
+</body>
+</html>

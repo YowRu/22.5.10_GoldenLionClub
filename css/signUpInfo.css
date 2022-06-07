@@ -1,0 +1,421 @@
+body {
+    position: relative;
+    background: url('../img/login_bg.png') no-repeat center;
+    background-size: cover;
+}
+
+header .right .bottom {
+    position: relative;
+    z-index: -1;
+}
+
+.content .title {
+    font-size: 1.2rem;
+}
+
+.flex.stepWP {
+    margin: 0;
+    padding: 15px 0;
+    background-color: #eee;
+    justify-content: center;
+    position: relative;
+}
+
+.flex.stepWP::after {
+    content: '';
+    display: block;
+    width: 60%;
+    position: absolute;
+    top: 36%;
+    left: 21%;
+    z-index: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+.flex.stepWP .step {
+    width: 33%;
+}
+
+.flex.stepWP p, .flex.stepWP .num {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    color: #ddd;
+    font-size: 12px;
+}
+
+.flex.stepWP .num {
+    background-color: #ddd;
+    color: #fff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    margin: 0 auto 4px;
+    font-size: .9rem;
+}
+
+.flex.stepWP .active .num {
+    background-color: #f1594b;
+}
+
+.flex.stepWP .active p {
+    color: #f1594b;
+}
+
+fieldset {
+    border: 0;
+    padding-top: 20px;
+}
+
+#main {
+    max-width: 1400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    /* margin: 0 auto; */
+    margin: 60px auto 0;
+    min-height: 100vh;
+}
+
+.content {
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+
+}
+
+.content.no {
+    padding-bottom: 20px;
+}
+
+.title {
+    font-size: 2rem;
+    color: rgb(39, 39, 39);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 70px;
+    position: relative;
+}
+
+
+label {
+    font-size: 1rem;
+    margin-right: 10px;
+    width: 15%;
+    color: rgb(0, 15, 88);
+    font-weight: 400;
+}
+
+input {
+    border: none;
+    width: 85%;
+    font-size: 1rem;
+    color: #444;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+#authCode {
+    width: 65%;
+}
+
+input::placeholder {
+    font-size: 1rem;
+    color: rgb(168, 168, 168);
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+input.big {
+    width: 100%;
+}
+
+.confirm {
+    width: 115px;
+    color: #FE4B00;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.confirm:before {
+    content: ' | ';
+    color: #ddd;
+}
+
+.flex {
+    border-bottom: 1px solid #ddd;
+    margin: 20px auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 90px;
+}
+
+.info p {
+    font-size: 1rem;
+    color: #656565;
+}
+
+.info a {
+    color: #FE4B00;
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+.submit {
+    display: block;
+    height: 50px;
+    margin: 52px auto 76px;
+    background-color: rgb(139, 138, 138);
+    background-color: #0287ec;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.submit.no {
+    margin: 15px auto;
+}
+
+input#validate {
+    width: 60%;
+}
+
+.info.login {
+    margin-top: -10px;
+}
+
+.flex.forget {
+    border-bottom: 0;
+}
+
+.flex.forget a {
+    color: #0287ec;
+    text-align: right;
+    font-size: 1rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.flex.forget a.left {
+    text-align: left;
+}
+
+.flex.noBorder {
+    border: 0;
+    margin-bottom: 20px;
+}
+
+.flex.noBorder.blue {
+    margin-top: 0;
+}
+
+.flex.noBorder input[type="checkbox"] {
+    width: 20px;
+}
+
+.flex.noBorder p {
+    padding: 0 10px;
+}
+
+.flex.noBorder a {
+    line-height: 28px;
+    height: 28px;
+    color: #f03c35;
+    vertical-align: middle;
+}
+
+.flex.noBorder.blue a {
+    color: #0287ec;
+}
+
+#main .flex span {
+    width: 250px;
+    text-align: right;
+    /* border-right: 1px solid #ddd; */
+}
+
+#main .flex.noBorder span {
+    border: 0;
+}
+
+@media(max-width:800px) {
+    .info {
+        margin-top: 75px;
+    }
+
+    #main {
+        padding: 80px 30px 0;
+    }
+}
+
+@media(max-width:700px) {
+    input {
+        width: 370px;
+    }
+
+    .flex.forget a, .info a, .info p,
+    label, input, input::placeholder {
+        font-size: 1rem;
+    }
+
+    .info {
+        margin-top: 55px;
+    }
+
+    #main {
+        padding-top: 65px;
+    }
+}
+
+@media(max-width:650px) {
+    .confirm {
+        font-size: .95rem;
+    }
+}
+
+@media(max-width:550px) {
+    input {
+        width: 270px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .title:after {
+        width: 24px;
+    }
+
+    #main {
+        padding-top: 54px;
+    }
+
+    label, input, input::placeholder {
+        font-size: .95rem;
+    }
+
+    .info {
+        margin-top: 40px;
+    }
+
+    .confirm {
+        font-size: .95rem;
+    }
+
+    #main .flex span {
+        width: 140px;
+        font-size: .9rem;
+    }
+
+    input, input::placeholder {
+        font-size: .9rem;
+    }
+
+    .content {
+        width: 90%;
+    }
+}
+
+@media(max-width:500px) {
+    .title {
+        margin-bottom: 36px;
+    }
+
+    label, input, input::placeholder {
+        font-size: 0.9rem;
+    }
+
+    .flex {
+        margin: 32px auto 17px;
+    }
+
+    .flex.forget {
+        margin: 19px auto 30px;
+    }
+
+    .flex.noBorder {
+        flex-direction: column;
+    }
+
+    .info {
+        margin-top: 31px;
+        justify-content: flex-start;
+    }
+
+    .info.login {
+        justify-content: center;
+        margin-top: 38px;
+    }
+
+    .submit {
+        margin: 26px auto 38px;
+    }
+
+    #main {
+        padding: 54px 15px 0;
+    }
+
+    input#authCode {
+        width: 200px;
+    }
+
+    label {
+        width: 18%;
+    }
+}
+
+
+@media(max-width:450px) {
+    .submit {
+        width: 100%;
+    }
+
+    .confirm {
+        font-size: .85rem;
+    }
+
+    label {
+        width: 22%;
+    }
+
+    .info p, .info a, .flex.forget a {
+        font-size: 14px;
+    }
+
+    .title:after {
+        left: 46.5%;
+    }
+
+    .content {
+        width: 95%;
+    }
+}
+
+@media(max-width:375px) {
+    label {
+        width: 25%;
+    }
+}
+
+@media(max-width:350px) {
+    input#authCode {
+        width: 140px;
+    }
+}
+
+@media(max-width:330px) {
+    input#authCode {
+        width: 120px;
+    }
+}

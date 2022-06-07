@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/loading.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/signUpInfo.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/validate.css" type="text/css">
+        <link rel="stylesheet" href="css/cashPlus.css">
+        <title>金狮会 -虛擬幣帐户</title>
+      </head>
+      <style>
+        .flex{margin:20px auto}
+    </style>
+<body>
+    <header></header>
+    <div id="main">
+       <div class="content no">
+            <div class="title">虛擬幣帐户</div>
+            <div class="flex stepWP">
+                <div class="step step1">
+                    <div class="num">1</div>
+                    <p>资本资料</p>
+                </div>
+                <div class="step step2 active">
+                    <div class="num">2</div>
+                    <p>收款帐户资讯</p>
+                </div>
+                <div class="step step3">
+                    <div class="num">3</div>
+                    <p>电子钱包帐户资讯</p>
+                </div>
+            </div>
+            <form action="" id="Form" method="post">
+              <fieldset>
+                <div class="content">
+                    <div class="flex">
+                        <!-- <span>大陆银行 :</span> -->
+                        <img src="img/icon/bank.png" alt="">
+                        <input type="text" id="bank" name="bank" placeholder="请输入大陆银行" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <!-- <span>分行 :</span> -->
+                        <img src="img/icon/building.png" alt="">
+                        <input type="tel" id="branch" name="branch" placeholder="请输入分行" autocomplete="off" required>
+                    </div>
+                    <div class="flex last">
+                        <!-- <span>帐号 :</span> -->
+                        <img src="img/icon/save-money.png" alt="">
+                        <input type="text" id="account" name="account" placeholder="请输入帐号" autocomplete="off" required>
+                    </div>
+                    <input type="submit" value="下一步" class="submit no">
+                </div>
+              </fieldset>
+            </form>
+       </div>
+    </div>
+    <script>
+
+        $( "#Form" ).validate({
+            rules: {
+                bank: {
+                    required: true,
+                },
+                branch:{
+                    required: true,
+                },
+                account:{
+                    required: true,
+                },
+            },
+            messages: {
+                bank: {
+                    required: "请输入大陆银行",
+                },
+                branch: {
+                    required: "请输入分行",
+                },
+                account:{
+                    required: "请输入帐号",
+                },
+            },
+            
+        });
+    
+    </script>
+   
+</body>
+</html>

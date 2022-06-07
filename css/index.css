@@ -1,0 +1,272 @@
+#main .row {
+  margin-bottom: .10%;
+}
+
+#main .row1 {
+  width: 100%;
+  height: 800px;
+  background: url('../img/banner1.png') no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+#main .row1 .text {
+  position: absolute;
+  bottom: 10%;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  letter-spacing: 5px;
+  display: none;
+}
+
+#main .row .text .blod.big {
+  font-size: 3.125rem;
+  font-weight: 600;
+}
+
+#main .row .text .blod.small, #main .row .text .flex {
+  font-size: 1.85rem;
+  font-weight: 400;
+  margin-top: 5px;
+}
+
+#main .row .text .flex {
+  color: #fbe4ab;
+  margin-top: 15px;
+}
+
+#main .row .text .flex p {
+  margin: 0 35px;
+}
+
+#main .row2 {
+  width: 100%;
+  height: 800px;
+  background: url('../img/banner2.png') no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+#main .row2 .text, #main .row3 .text, #main .row4 .text {
+  position: absolute;
+  top: 10%;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  letter-spacing: 5px;
+}
+
+#main .row3 .text {
+  text-shadow: #000 3px 2px 10px;
+}
+
+#main .row4 .left .text {
+  text-shadow: rgb(80, 80, 80) 3px 2px 10px;
+}
+
+.blue {
+  color: #0450d1;
+}
+
+.yellow {
+  color: #fff000;
+}
+
+.black {
+  color: #000;
+}
+
+#main .row .text a {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
+#main .row3 {
+  width: 100%;
+  height: 800px;
+  background: url('../img/banner3.png') no-repeat center;
+  background-size: cover;
+  position: relative;
+}
+
+#main .row4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main .row4 .leftWP, #main .row4 .rightWP {
+  width: 50%;
+
+}
+
+#main .row4 .leftWP {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#161717+0,1d1e23+50,161717+100 */
+  background: #161717;
+  /* Old browsers */
+  background: -moz-radial-gradient(center, ellipse cover, #161717 0%, #1d1e23 50%, #161717 100%);
+  /* FF3.6-15 */
+  background: -webkit-radial-gradient(center, ellipse cover, #161717 0%, #1d1e23 50%, #161717 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #161717 0%, #1d1e23 50%, #161717 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#161717', endColorstr='#161717', GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+
+
+}
+
+#main .row4 .rightWP {
+  background-color: #ecedea;
+}
+
+#main .row4 .left {
+  width: auto;
+  height: 800px;
+  background: url('../img/banner4.png') no-repeat center;
+  position: relative;
+}
+
+#main .row4 .right {
+  width: auto;
+  height: 800px;
+  background: url('../img/banner5.png') no-repeat center;
+  position: relative;
+}
+
+@media(max-width:1900px) {
+  #main .row {
+    margin-bottom: 10px;
+  }
+
+  #main .row1, #main .row2, #main .row3, #main .row4 .right, #main .row4 .left {
+    height: 700px;
+    width: 100%;
+  }
+}
+
+@media(max-width:1650px) {
+
+  #main .row1, #main .row2, #main .row3, #main .row4 .right, #main .row4 .left {
+    height: 600px;
+  }
+}
+
+@media(max-width:1400px) {
+
+  #main .row1, #main .row2, #main .row3, #main .row4 .right, #main .row4 .left {
+    height: 550px;
+  }
+
+  #main .row .text .blod.big {
+    font-size: 2.125rem;
+  }
+
+  #main .row .text .blod.small, #main .row .text .flex {
+    font-size: 1.5rem;
+  }
+
+  #main .row .text a {
+    font-size: 1.12rem;
+  }
+}
+
+@media(max-width:1280px) {
+
+  #main .row1, #main .row2, #main .row3, #main .row4 .right, #main .row4 .left {
+    height: 450px;
+  }
+
+  #main .row .text .blod.big {
+    font-size: 2rem;
+  }
+
+  #main .row .text .blod.small, #main .row .text .flex {
+    font-size: 1.25rem;
+  }
+
+  #main .row .text a {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+}
+
+@media(max-width:1050px) {
+
+  #main .row1, #main .row2, #main .row3 {
+    height: 400px;
+  }
+
+}
+
+@media(max-width:1000px) {
+  #main .row4 {
+    flex-direction: column;
+  }
+
+  #main .row4 .leftWP, #main .row4 .rightWP {
+    width: 100%;
+  }
+
+  #main .row4 .right .text a {
+    text-shadow: #fff 1px 1px 15px;
+  }
+
+}
+
+@media(max-width:550px) {
+  #main {
+    overflow-x: hidden;
+  }
+
+  #main .row1 {
+    width: 180%;
+    height: 350px;
+    margin-left: -42%;
+  }
+
+  #main .row2 {
+    background: url('../img/banner2M.png') no-repeat center;
+  }
+
+  #main .row3 {
+    background: url('../img/banner3M.png') no-repeat center;
+  }
+
+  #main .row2 .text, #main .row3 .text, #main .row4 .text {
+    top: 28%;
+  }
+
+  #main .row .text a {
+    text-shadow: #000 2px 5px 10px;
+  }
+
+  #main .row4 .left .text a {
+    text-shadow: none;
+  }
+
+  #main .row4 .right, #main .row4 .left {
+    height: 400px;
+  }
+
+  #main .row4 .right {
+    margin-top: 10px;
+  }
+}
+
+@media(max-width:450px) {
+  #main .row1 {
+    height: 312px;
+  }
+
+  #main .row {
+    margin-bottom: 5px;
+  }
+
+  #main .row .text a.yellow {
+    background-color: rgba(0, 0, 0, 0.809);
+  }
+}

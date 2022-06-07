@@ -1,0 +1,38 @@
+.flex {
+  margin: 20px auto
+}
+
+form .flex {
+  position: relative;
+  height: 70px;
+}
+
+form input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+form .submit {
+  position: relative;
+  height: 50px;
+  opacity: 1;
+}
+
+form label {
+  width: 80%;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: 1px 2px #eee;
+  border: 1px solid rgb(228, 226, 226);
+  height: 50px;
+  line-height: 50px;
+}
+
+label.error {
+  box-shadow: none;
+  border: 0;
+  bottom: -36px;
+  left: 5%;
+}

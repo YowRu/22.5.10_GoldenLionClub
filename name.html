@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/loading.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/news.css" type="text/css">
+        <link rel="stylesheet" href="css/signUp.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/validate.css" type="text/css">
+        <title>富盈金投 -實名認證</title>
+    </head>
+    <style>
+        #main{margin-top: 70px;}
+        label.error{left: 14%;}
+    </style>
+<body>
+    <header></header>
+    <div id="main">
+       <div class="content no">
+            <div class="title">開立帳戶</div>
+            <div class="flex stepWP">
+                <div class="step step1">
+                    <div class="num">1</div>
+                    <p>驗證手機</p>
+                </div>
+                <div class="step step2 active">
+                    <div class="num">2</div>
+                    <p>實名認證</p>
+                </div>
+                <div class="step step3">
+                    <div class="num">3</div>
+                    <p>設置密碼</p>
+                </div>
+                <div class="step step4">
+                    <div class="num">4</div>
+                    <p>開戶成功</p>
+                </div>
+            </div>
+            <form action="" id="Form" method="post">
+              <fieldset>
+                <div class="content">
+                    <div class="flex">
+                        <img src="img/icon/id.png" alt="">
+                        <input type="text" id="name" name="name" placeholder="請輸入姓名" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <img src="img/icon/login.png" alt="">
+                        <input type="text" placeholder="請輸入身分證" id="idNum" name="idNum" autocomplete="off" required>
+                    </div>
+                    <input type="submit" value="下一步" class="submit no">
+                    <div class="flex noBorder blue">
+                        <p>已有帳號,</p>
+                        <a href="login.html">立即登入</a>
+                    </div>
+                </div>
+              </fieldset>
+            </form>
+       </div>
+    </div>
+    <footer></footer>
+    <script>
+       //Chinese
+       var text = new RegExp("^[\u4E00-\u9FA5]+$");
+       jQuery.validator.methods.matches = function (value, element, params) {
+            var text = new RegExp(params);
+            return this.optional(element) || text.test(value);
+        };
+
+        //id
+        let idValidation =new RegExp("^[A-Z][12]\\d{8}$");
+        jQuery.validator.methods.matches = function (value, element, params) {
+            var idValidation = new RegExp(params);
+            return this.optional(element) || idValidation.test(value);
+        };
+        //function verifyId(id) {
+        //  id = id.trim();
+            
+        //  verification = id.match("^[A-Z][12]\\d{8}$")
+        // 	if(!verification){
+        // 		return false
+        // 	}
+
+        //     let conver = "ABCDEFGHJKLMNPQRSTUVXYWZIO"
+        //     let weights = [1, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1]
+
+        //     id = String(conver.indexOf(id[0]) + 10) + id.slice(1);
+
+        //     checkSum = 0
+        //     for (let i = 0; i < id.length; i++) {
+        //         c = parseInt(id[i])
+        //         w = weights[i]
+        //         checkSum += c * w
+        //     }
+            
+        //     return checkSum % 10 == 0
+        // }
+
+        // console.log(verifyId("A123456789"));
+
+
+        $( "#Form" ).validate({
+            rules: {
+                idNum: {
+                    required: true,
+                    matches:idValidation,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                name: {
+                    required: true,
+                    matches: text,
+                    minlength: 2
+                }
+            },
+            messages: {
+                idNum: {
+                    required: "請輸入身分證",
+                    matches: "請檢查身份證格式",
+                    minlength:"請檢查是否輸入錯誤",
+                    maxlength:"請檢查是否輸入錯誤"
+                },
+                name: {
+                    required: "請輸入姓名",
+                    matches: "請輸入中文",
+                    minlength: "請輸入姓名"
+                },
+            },
+            submitHandler: function (form) {
+              var users = { 
+                name: $("#name").val(),
+                id: $("#idNum").val()
+              };
+              
+              $.ajax({
+                  type: 'POST',
+                  contentType: "application/json",
+                  url: '/api/Login',
+                  data: JSON.stringify(users),
+                  success: function (msg) {
+                      if(msg==='成功'){
+                        
+                        Swal.fire({
+                            icon: 'success',
+                            title: '驗證成功',
+                            text: '前往設置密碼',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                window.location="setPWD.html"
+                            }, 500);  
+                        });
+
+                    }else{
+                        Swal.fire({
+                            icon: 'question',
+                            title: '輸入錯誤',
+                            text:'驗證錯誤',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 500);  
+                        });
+                                              }
+                  }
+              });
+            }
+        });
+    
+    </script>
+   
+</body>
+</html>

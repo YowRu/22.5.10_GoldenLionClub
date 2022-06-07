@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7,9,10,11" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/news.css" type="text/css">
+    <link rel="stylesheet" href="css/signUp.css" type="text/css">
+    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <link rel="stylesheet" href="css/forget.css">
+    <link rel="stylesheet" href="css/validate.css" type="text/css">
+    <title>重設密碼</title>
+</head>
+<body>
+  <header></header>
+  <div id="main">
+      <div class="content">
+            <div class="title">重設密碼</div>
+            <form action="" id="Form">
+                <fieldset>
+                    <div class="content">
+                        <div class="flex">
+                            <img src="img/icon/pwd.png" alt="">
+                            <input type="password" placeholder="新密碼" class="big" id="pwd" name="pwd" autocomplete="off" required>
+                        </div>
+                        <div class="flex bottom">
+                            <img src="img/icon/confirm.png" alt="">
+                            <input type="password" placeholder="確認密碼" class="big" id="confirmPWD" name="confirmPWD" autocomplete="off" required>
+                        </div>
+                        <span>密碼應為4-16位字母和數字(不可全為數字或字母，區分大小寫)</span>
+                        <input type="submit" value="提交" class="flex noLine">
+                    </div>
+                </fieldset>
+            </form>
+      </div>
+  </div>
+  <script>
+
+    $.validator.addMethod('mypassword', function(value, element) {
+        return this.optional(element) || (value.match(/[a-zA-Z]/) && value.match(/[0-9]/));
+    },'至少一個字母或數字，區分大小寫');
+
+    $( "#Form" ).validate({
+        rules: {
+            pwd: {
+                required: true,
+                mypassword:true,
+                minlength:4,
+                maxlength:16
+            },
+            confirmPWD: {
+                required: true,
+                equalTo: "#pwd",
+                minlength:4,
+                maxlength:16
+            },
+        },
+        messages: {
+            pwd: {
+                required: "請輸入密碼",
+                matches: "至少一個字母或數字，區分大小寫",
+                minlength:"至少輸入4位密碼",
+                maxlength:"最多輸入16位密碼",
+            },
+            confirmPWD: {
+                required: "再次確認密碼",
+                equalTo:"需輸入相同密碼"
+            },
+        },
+        submitHandler: function (form) {
+              var validate = { 
+                pwd: $("#pwd").val(),
+                confirmPWD: $("#confirmPWD").val()
+              };
+              
+              $.ajax({
+                  type: 'POST',
+                  contentType: "application/json",
+                  url: '/api/Login',
+                  data: JSON.stringify(validate),
+                  success: function (msg) {
+                      if(msg==='登入成功'){
+                        
+                        Swal.fire({
+                            icon: 'success',
+                            title: '密碼更新',
+                            text: '請重新登入',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                window.location="login.html"
+                            }, 500);  
+                        });
+
+                    }else{
+                        Swal.fire({
+                            icon: 'question',
+                            title: '密碼重設失敗',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 500);  
+                        });
+                                              }
+                  }
+              });
+        }
+    });
+
+</script>
+</body>
+</html>

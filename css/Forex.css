@@ -1,0 +1,35 @@
+#main .bg img {
+  opacity: 0;
+  height: 400px;
+}
+
+@media(max-width:1250px) {
+  #main .row2 {
+    width: 60%;
+  }
+}
+
+@media(max-width:550px) {
+  #main .row1 {
+    flex-direction: column;
+  }
+
+  #main .row1 img {
+    width: auto;
+    height: 300px;
+    margin-bottom: 20px;
+  }
+
+  #main .row .text {
+    width: 80%;
+    margin: 20px auto 0;
+  }
+
+  #main .row2 {
+    width: 80%;
+  }
+
+  #main .bg img {
+    display: none;
+  }
+}

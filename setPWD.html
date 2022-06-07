@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="js/jquery-1.8.3.min.js"></script>
+        <script src="js/loading.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/sweetalert2.all.min.js"></script>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/layout.css" type="text/css">
+        <link rel="stylesheet" href="css/news.css" type="text/css">
+        <link rel="stylesheet" href="css/signUp.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/validate.css" type="text/css">
+        <title>富盈金投 -設置密碼</title>
+    </head>
+    <style>
+        #main{margin-top: 70px;}
+        label.error{left: 14%;}
+        fieldset .flex{margin: 20px auto 35px;}
+        fieldset .content{margin-top: 30px;padding-bottom: 0;}
+        .submit.no{margin-top: 50px;}
+    </style>
+<body>
+    <header></header>
+    <div id="main">
+       <div class="content no">
+            <div class="title">開立帳戶</div>
+            <div class="flex stepWP">
+                <div class="step step1">
+                    <div class="num">1</div>
+                    <p>驗證手機</p>
+                </div>
+                <div class="step step2">
+                    <div class="num">2</div>
+                    <p>實名認證</p>
+                </div>
+                <div class="step step3 active">
+                    <div class="num">3</div>
+                    <p>設置密碼</p>
+                </div>
+                <div class="step step4">
+                    <div class="num">4</div>
+                    <p>開戶成功</p>
+                </div>
+            </div>
+            <form action="" id="Form" method="post">
+              <fieldset>
+                <div class="content">
+                    <div class="flex">
+                        <img src="img/icon/pwd.png" alt="">
+                        <input type="password" id="pwd" name="pwd" placeholder="登入密碼" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <img src="img/icon/confirm.png" alt="">
+                        <input type="password" placeholder="確認登入密碼" id="confirmPWD" name="confirmPWD" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <img src="img/icon/pwd.png" alt="">
+                        <input type="password" id="withdrawal" name="withdrawal" placeholder="提款密碼" autocomplete="off" required>
+                    </div>
+                    <div class="flex">
+                        <img src="img/icon/confirm.png" alt="">
+                        <input type="password" placeholder="確認提款密碼" id="confirmWithdrawal" name="confirmWithdrawal" autocomplete="off" required>
+                    </div>
+                    <input type="submit" value="下一步" class="submit no">
+                    <div class="flex noBorder blue">
+                        <p>已有帳號,</p>
+                        <a href="login.html">立即登入</a>
+                    </div>
+                </div>
+              </fieldset>
+            </form>
+       </div>
+    </div>
+    <script>
+       //Chinese
+       var text = new RegExp("^[\u4E00-\u9FA5]+$");
+       jQuery.validator.methods.matches = function (value, element, params) {
+            var text = new RegExp(params);
+            return this.optional(element) || text.test(value);
+        };
+
+        $.validator.addMethod('mypassword', function(value, element) {
+            return this.optional(element) || (value.match(/[a-zA-Z]/) && value.match(/[0-9]/));
+        },'至少一個字母或數字，區分大小寫');
+
+        $( "#Form" ).validate({
+            rules: {
+                pwd: {
+                    required: true,
+                    mypassword:true,
+                    minlength: 4,
+                    maxlength: 16
+                },
+                confirmPWD: {
+                    required: true,
+                    equalTo: "#pwd",
+                    minlength:4,
+                    maxlength:16
+                },
+                withdrawal: {
+                    required: true,
+                },
+                confirmWithdrawal: {
+                    required: true,
+                    equalTo: "#withdrawal",
+                }
+            },
+            messages: {
+                pwd: {
+                    required: "請輸入密碼",
+                    matches: "至少一個字母或數字，區分大小寫",
+                    minlength:"至少輸入4位密碼",
+                    maxlength:"最多輸入16位密碼",
+                },
+                confirmPWD: {
+                    required: "再次確認密碼",
+                    equalTo:"需輸入相同密碼"
+                },
+                withdrawal: {
+                    required: "請輸入密碼",
+                },
+                confirmWithdrawal: {
+                    required: "再次確認密碼",
+                    equalTo:"需輸入相同密碼"
+                }
+            },
+            submitHandler: function (form) {
+              var users = { 
+                pwd: $("#pwd").val(),
+                confirmPWD: $("#confirmPWD").val(),
+                withdrawal: $("#withdrawal").val(),
+                confirmWithdrawal: $("#confirmWithdrawal").val(),
+              };
+              
+              $.ajax({
+                  type: 'POST',
+                  contentType: "application/json",
+                  url: '/api/Login',
+                  data: JSON.stringify(users),
+                  success: function (msg) {
+                      if(msg==='成功'){
+                        
+                        Swal.fire({
+                            icon: 'success',
+                            title: '開戶成功',
+                            text: '前往登入會員',
+                        }).then((result) => {
+                            $('.step3.active').removeClass('active');
+                            $('.step4').addClass('active');
+                            setTimeout(function() {
+                                window.location="login.html"
+                            }, 500);  
+                        });
+
+                    }else{
+                        Swal.fire({
+                            icon: 'question',
+                            title: '輸入錯誤',
+                            text:'驗證錯誤',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 500);  
+                        });
+                                              }
+                  }
+              });
+            }
+        });
+    
+    </script>
+   
+</body>
+</html>

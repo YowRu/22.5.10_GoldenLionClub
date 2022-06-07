@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7,9,10,11" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/signUpInfo.css" type="text/css">
+    <link rel="stylesheet" href="css/login.css" type="text/css">
+    <link rel="stylesheet" href="css/validate.css" type="text/css">
+    <link rel="stylesheet" href="css/forget.css">
+    <title>忘記密碼</title>
+</head>
+<body>
+  <header></header>
+  <div id="main">
+      <div class="content">
+            <div class="title">忘記密碼</div>
+            <form action="" id="Form">
+                <fieldset>
+                    <div class="content">
+                        <div class="flex">
+                            <img src="img/icon/phone.png" alt="">
+                            <input type="tel" id="id" name="id" placeholder="請輸入註冊手機" autocomplete="off" required>
+                        </div>
+                        <div class="flex">
+                            <img src="img/icon/validation.png" alt="">
+                            <input type="text" placeholder="驗證碼" id="validate" name="validate"required>
+                            <a class="confirm">獲取驗證碼</a>
+                        </div>
+                        <input type="submit" value="下一步" class="flex noLine">
+                     </div>
+                </fieldset>
+            </form>
+      </div>
+  </div>
+  <script>
+    $('.confirm').click(function(){
+      if($('#id').val()!==''){
+        let id = $('#id').val();
+        $.ajax({
+              type: 'POST',
+              contentType: "application/json",
+              url: '/api/Login',
+              data: JSON.stringify(id),
+              success: function (msg) {}
+          });
+      }else{
+        $(this).attr('disabled','disabled');
+        Swal.fire({
+                icon: 'warning',
+                title: '尚未輸入手機',
+                text: '請輸入手機號碼',
+            });
+      }
+    });
+    var re = new RegExp("^09\\d{8}$");
+    var text = new RegExp("^[\u4E00-\u9FA5]+$");
+    var num =new RegExp("/^[0-9a-zA-Z]+$/");
+    //id
+    jQuery.validator.methods.matches = function (value, element, params) {
+        var re = new RegExp(params);
+        return this.optional(element) || re.test(value);
+    };
+
+    //number & english
+    jQuery.validator.methods.matches = function (value, element, params) {
+        var num = new RegExp(params);
+        return this.optional(element) || num.test(value);
+    };
+
+
+    $( "#Form" ).validate({
+        rules: {
+            id: {
+                required: true,
+                matches: re,
+            },
+            validate: {
+                required: true,
+                minlength:4
+            },
+        },
+        messages: {
+            id: {
+                required: "請輸入註冊手機",
+                matches: "請輸入註冊手機",
+                maxlength:10
+            },
+            validate: {
+                required: "點選獲取驗證碼"
+            },
+        },
+        submitHandler: function (form) {
+              var users = { 
+                validate: $("#validate").val()
+              };
+              
+              $.ajax({
+                  type: 'POST',
+                  contentType: "application/json",
+                  url: '/api/Login',
+                  data: JSON.stringify(users),
+                  success: function (msg) {
+                      if(msg==='驗證成功'){
+                        
+                        Swal.fire({
+                            icon: 'success',
+                            title: '驗證成功',
+                            text: '請重設密碼',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                window.location="changePWD.html"
+                            }, 500);  
+                        });
+
+                    }else{
+                        Swal.fire({
+                            icon: 'question',
+                            title: '輸入錯誤',
+                            text:'驗證碼錯誤',
+                        }).then((result) => {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 500);  
+                        });
+                                              }
+                  }
+              });
+        }
+    });
+
+</script>
+</body>
+</html>

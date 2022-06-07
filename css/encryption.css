@@ -1,0 +1,24 @@
+#main .bg {
+  align-items: flex-end;
+}
+
+#main .row1 img {
+  height: 300px;
+  width: 35%;
+}
+
+#main .bg img {
+  height: 300px;
+}
+
+@media(max-width:550px) {
+  #main .bg {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #main .row1 img {
+    width: 70%;
+  }
+}

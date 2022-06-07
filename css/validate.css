@@ -1,0 +1,62 @@
+label.error {
+  position: absolute;
+  bottom: -21px;
+  left: 14%;
+  width: 100%;
+  font-size: 1rem;
+  color: red;
+  margin-right: 0;
+}
+
+.title {
+  font-size: 2rem;
+  color: rgb(39, 39, 39);
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.title::after {
+  content: '';
+  display: none;
+}
+
+.swal2-html-container p {
+  font-size: 1rem;
+}
+
+.contact {
+  color: #026dd7;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+  background-color: rgb(255, 64, 0);
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+  border: 0.25em solid rgb(255, 64, 1) !important;
+}
+
+.swal2-icon.swal2-success {
+  border-color: #ff2a00 !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: rgb(255, 64, 0);
+}
+
+label#validate-error {
+  left: 14%;
+}
+
+label#checkbox-error {
+  bottom: -10px;
+  left: 30px;
+}
+
+@media(max-width:550px) {
+  label.error {
+    font-size: .9rem;
+  }
+}
