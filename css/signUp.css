@@ -289,12 +289,14 @@
   color: #1652b5;
   border-bottom: 1px solid #c7c7c7;
   font-size: 1.4rem;
+  cursor: pointer;
 }
 
 #main .QA .answer {
   padding: 20px;
   font-size: 1rem;
   color: #353535;
+  display: none;
 }
 
 @media(max-width:550px) {
