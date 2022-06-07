@@ -137,9 +137,9 @@
 }
 
 @media(max-width:1900px) {
-  #main .row {
+  /* #main .row {
     margin-bottom: 10px;
-  }
+  } */
 
   #main .row1, #main .row2, #main .row3, #main .row4 .right, #main .row4 .left {
     height: 700px;
@@ -252,9 +252,9 @@
     height: 400px;
   }
 
-  #main .row4 .right {
+  /* #main .row4 .right {
     margin-top: 10px;
-  }
+  } */
 }
 
 @media(max-width:450px) {
