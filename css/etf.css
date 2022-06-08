@@ -227,6 +227,11 @@
   #main .row.QA section {
     width: 90%;
   }
+
+  #main .row .text {
+    width: 80%;
+    margin: 20px auto 0;
+  }
 }
 
 @media(max-width:414px) {

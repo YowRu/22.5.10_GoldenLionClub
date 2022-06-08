@@ -22,5 +22,6 @@
   #main .row1 img {
     width: 90%;
     height: 280px;
+    margin-right: 0;
   }
 }
